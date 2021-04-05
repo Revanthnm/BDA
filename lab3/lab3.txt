@@ -1,0 +1,169 @@
+> db
+test
+> show databases
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use student
+switched to db student
+> db.createCollection("studentinfo")
+{ "ok" : 1 }
+> db.studentinfo.insertMany([
+... {rollno:1,age:21,contact:13109317,emailid:"revanthnm@gmail.com"},
+... {rollno:10,age:21,contact:12309721,emailid:"raghav@gmail.com"},
+... {rollno:11,age:20,contact:73528172,emailid:"sanjeev@gmail.com"},
+... {rollno:12,age:21,contact:75391262,emailid:"vinay@gmail.com"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("606add0beb1a66784e5eb177"),
+                ObjectId("606add0beb1a66784e5eb178"),
+                ObjectId("606add0beb1a66784e5eb179"),
+                ObjectId("606add0beb1a66784e5eb17a")
+        ]
+}
+> db.studentinfo.find({})
+{ "_id" : ObjectId("606add0beb1a66784e5eb177"), "rollno" : 1, "age" : 21, "contact" : 13109317, "emailid" : "revanthnm@gmail.com" }
+{ "_id" : ObjectId("606add0beb1a66784e5eb178"), "rollno" : 10, "age" : 21, "contact" : 12309721, "emailid" : "raghav@gmail.com" }
+{ "_id" : ObjectId("606add0beb1a66784e5eb179"), "rollno" : 11, "age" : 20, "contact" : 73528172, "emailid" : "sanjeev@gmail.com" }
+{ "_id" : ObjectId("606add0beb1a66784e5eb17a"), "rollno" : 12, "age" : 21, "contact" : 75391262, "emailid" : "vinay@gmail.com" }
+> db.studentinfo.update(
+... {rollno:10}
+... {$set:{emailid:"newmailid@gmila.com"}}
+... )
+2021-04-05T15:21:21.931+0530 E QUERY    [js] SyntaxError: missing ) after argument list @(shell):3:0
+> db.studentinfo.update( {rollno:10},{$set:{emailid:"newmailid@gmila.com"}} )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.studentinfo.find({rollno:10})
+{ "_id" : ObjectId("606add0beb1a66784e5eb178"), "rollno" : 10, "age" : 21, "contact" : 12309721, "emailid" : "newmailid@gmila.com" }
+> db.studentinfo.update( {rollno:11},{$set:{name:"PQR"}} )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.studentinfo.find({rollno:11})
+{ "_id" : ObjectId("606add0beb1a66784e5eb179"), "rollno" : 11, "age" : 20, "contact" : 73528172, "emailid" : "sanjeev@gmail.com", "name" : "PQR" }
+> db.studentinfo.update( {rollno:1},{$set:{name:"revanth"}} )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.studentinfo.update( {rollno:10},{$set:{name:"raghav"}} )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.studentinfo.update( {rollno:12},{$set:{name:"vinay"}} )
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.studentinfo.find({})
+{ "_id" : ObjectId("606add0beb1a66784e5eb177"), "rollno" : 1, "age" : 21, "contact" : 13109317, "emailid" : "revanthnm@gmail.com", "name" : "revanth" }
+{ "_id" : ObjectId("606add0beb1a66784e5eb178"), "rollno" : 10, "age" : 21, "contact" : 12309721, "emailid" : "newmailid@gmila.com", "name" : "raghav" }
+{ "_id" : ObjectId("606add0beb1a66784e5eb179"), "rollno" : 11, "age" : 20, "contact" : 73528172, "emailid" : "sanjeev@gmail.com", "name" : "PQR" }
+{ "_id" : ObjectId("606add0beb1a66784e5eb17a"), "rollno" : 12, "age" : 21, "contact" : 75391262, "emailid" : "vinay@gmail.com", "name" : "vinay" }
+> mongoexport --db=student --collection=studentinfo --type=csv --fields=rollno,name,age,contact,emailid --out=C:\Users\asus\Downloads\mongoDB\lab3/lab3.csv
+2021-04-05T15:36:17.347+0530 E QUERY    [js] SyntaxError: missing ; before statement @(shell):1:14
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
